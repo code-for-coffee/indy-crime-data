@@ -9,7 +9,9 @@ html {
 body {
   font: 100% "Jaldi", sans-serif;
   box-sizing: border-box;
-  margin: 0; }
+  margin: 0;
+  width: 100%;
+  height: 100%; }
   body h1 {
     color: #BF0A30;
     padding: 0;
@@ -17,9 +19,19 @@ body {
   body p {
     color: #002868;
     font-size: 10px; }
+  body #home {
+    text-align: center;
+    padding-top: 15%; }
+  body #map {
+    width: 100%;
+    height: 100%;
+    position: fixed; }
+    body #map #googleMap {
+      width: 100%;
+      height: 85%; }
   body nav {
     background: #EDEDED;
-    width: 90%;
+    width: 100%;
     position: fixed;
     margin: 0;
     bottom: 0;
@@ -33,3 +45,5 @@ body {
 
 a {
   color: #00B7FF; }
+
+/*# sourceMappingURL=style.css.map */
