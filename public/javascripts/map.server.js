@@ -6,7 +6,7 @@ var markers=[];
 $(document).ready(function(){
   console.log('hello fuckboizi');
   $.ajax({
-    url:'http://data.indy.gov/datasets/5c8a9412cf454753bc774d31d8505b50_12.geojson',
+    url:'https://data.indy.gov/datasets/5c8a9412cf454753bc774d31d8505b50_12.geojson',
     type:'get',
     success:function(data){
       //var date = new Date;
@@ -17,11 +17,11 @@ $(document).ready(function(){
       //fillCrimeSelector('#type','primary_type',data);
       //getIUCR($('#type').val());
       //for(var crime in data){
-        //  if(data[crime].primary_type==$('option:selected').val()){
-        //    addMarker(data[crime]);
-        // };//end of if statment
+      //  if(data[crime].primary_type==$('option:selected').val()){
+      //    addMarker(data[crime]);
+      // };//end of if statment
       //}//end of for in loop
-/////////////////////////change event listener
+      /////////////////////////change event listener
       $('#type').change(function(){
         $('#description').empty();
         removeMarkers(markers);
@@ -49,6 +49,7 @@ $(document).ready(function(){
       console.log(err);
     }
   });
+  addTheMarkers();
 });
 
 var mapcoords= {
@@ -74,27 +75,23 @@ var mapcoords= {
     "crime": "AGGRIVATED ASSAULT-GUN"
   }]
 }
-
-// console.log(data.features[1].properties);
-//
-// function addMarker(data){
-//   var marker = new google.maps.Marker({
-//     position: {lat: data.features.properties.X_COORD}
-//   })
 function addMarker (data){
   var marker = new google.maps.Marker({
-  position: data,
-  map: map,
-  icon:'http://megaicons.net/static/img/icons_sizes/15/534/32/map-marker-ball-left-pink-icon.png',
-  title: data.primary_type+' ---- '+data.description+' ---- '+data.date,
-  animation:google.maps.Animation.DROP
-});// end of marker constructor
-    markers.push(marker);
-  }
-  for (int i = 0; i < mapcoords.length; i++) {
-    var lati = mapcoords.loc1[i].latitude;
-    var long = mapcoords.loc1[i].longitude;
-    crime = {lat: lati, lng: long};
+    position: data,
+    map: map,
+    icon:'http://megaicons.net/static/img/icons_sizes/15/534/32/map-marker-ball-left-pink-icon.png',
+    animation:google.maps.Animation.DROP
+  });// end of marker constructor
+  markers.push(marker);
+}
+function addTheMarkers(){
+  console.log('hit');
+  var jsonDP = JSON.parse(mapcoords);
+  for (var i = 0; i < mapcoords.length; i++) {
+    console.log(i+ 'hello');
+    var lati = jsonDP.loc1[i].latitude;
+    var lng = jsonDP.loc1[i].longitude;
+    var crime = {lat: lati, lng: lng};
     addMarker(crime);
-  }
-  //}
+  };
+}
