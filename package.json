@@ -6,14 +6,22 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "backbone": "^1.2.0",
     "body-parser": "~1.13.2",
+    "bootstrap": "^3.3.4",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "hbs": "~3.1.0",
+    "mongoose": "^4.0.3",
     "morgan": "~1.6.1",
     "node-sass-middleware": "0.8.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "underscore": "^1.8.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/y04nqt/indy-crime-data.git"
   },
   "description": "Indy crime data display",
   "main": "app.js",
