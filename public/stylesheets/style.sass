@@ -10,9 +10,12 @@ body
 
 
   h1
-    color: $red
+    color: $darkblue
     padding: 0
     font-size: 3em
+
+  h2
+    color: $darkblue
 
   p
     color: $darkblue
@@ -22,6 +25,25 @@ body
     text-align: center
     padding-top: 15%
 
+  #about
+    text-align: center
+    padding-top: 2.5%
+
+    hr
+      width: 80%
+
+    p
+      color: $blackish
+
+    p:first-child
+      color: $darkblue
+
+    p:last-child
+      width: 70%
+      margin: 0 auto
+
+  @import "map-style/mapStyle"
+  
   nav
     background: $grey
     width: 100%
@@ -36,6 +58,7 @@ body
     .navItems
       margin-left: 25px
       text-decoration: none
+      color: $red
 
 
 
