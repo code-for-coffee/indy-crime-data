@@ -5,14 +5,32 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// require('./db/database');
-// require('./models/Data');
-// require('./models/User');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+
+require('./db/database');
+require('./models/Data');
+require('./models/User');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+//instantly enable sessions
+app.use(require('express-session')({
+  secret: 'Something secret',
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+//config passport
+var User = require('./models/User');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,7 +51,7 @@ app.use(require('node-sass-middleware')({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/user', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
