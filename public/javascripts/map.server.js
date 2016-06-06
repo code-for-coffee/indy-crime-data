@@ -54,21 +54,29 @@ $(document).ready(function(){
     zoom: 11,
     center: myLatLng
   }
-  var map = new google.maps.Map(document.getElementById('googleMap'), examplePoint, console.log('hit'))
+  var titleData = {
+    title: 'we did it again',
+    desc: 'some more data here'
+  }
+  var map = new google.maps.Map(document.getElementById('googleMap'), examplePoint, console.log('hit in map var'));
 
   var marker = new google.maps.Marker({
     position: myLatLng,
-    title: 'we did it'
+    title: titleData.title + titleData.desc
   })
 
   marker.setMap(map);
   $.ajax({
-    url:'https://data.indy.gov/datasets/5c8a9412cf454753bc774d31d8505b50_12.geojson',
+    url:'http://data.indy.gov/datasets/5c8a9412cf454753bc774d31d8505b50_12.geojson',
     type:'get',
     success:function(data){
       console.log(data);
       var tumble = data.features[1].properties.ADDRESS+' Indianapolis, IN'
       console.log(tumble);
+      for (var i = 0; i < data.features.length; i ++){
+        console.log(data.features[i]);
+        console.log('hit em: ' + i);
+      }
       //for(var crime in data){
       //  if(data[crime].primary_type==$('option:selected').val()){
       //    addMarker(data[crime]);
