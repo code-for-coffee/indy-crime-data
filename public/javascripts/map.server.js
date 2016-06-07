@@ -4,7 +4,7 @@
 // var markers=[];
 
 $(document).ready(function(){
-
+  google.maps.event.addDomListener(window, 'load', initialize());
   // var mapcoords= {
   //   "loc1" : [{
   //     "latitude": 39.80936,
@@ -83,6 +83,7 @@ $(document).ready(function(){
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
+  var geocoder = new google.maps.Geocoder();
   var marker = new google.maps.Marker({
     position: myLatLng,
     title: titleData.title + titleData.desc
@@ -98,7 +99,6 @@ $(document).ready(function(){
     success:function(data){
       console.log(data);
       let indy = " INDIANAPOLIS, IN";
-      indy.toUpperCase();
       var tumble = data.features[1].properties.ADDRESS+' Indianapolis, IN'
       console.log(tumble);
       //~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -106,13 +106,22 @@ $(document).ready(function(){
       //=======DONT DELETE=======
       //~~~~~~~~GOOD CODE~~~~~~~~
       //~~~~~~~~~~~~~~~~~~~~~~~~~
-          // for (var i = 0; i < data.features.length; i ++){
-          //   console.log(data.features[i].properties.ADDRESS + indy);
-          //   console.log('hit em: ' + i);
-          // }
+      for (var i = 0; i < 25; i ++){
+        console.log(data.features[i].properties.ADDRESS + indy);
+        console.log('hit em: ' + i);
+        geocoder.geocode({'address': data.features[i].properties.ADDRESS + indy}, function(results, status){
+          if(status === google.maps.GeocoderStatus.OK){
+              addMarker(data, results);
+          }else{
+            alert('error ):')
+          }
+        })
+        //appending data clearly works w/ this code
+        //$('nav').append('<span>'+data.features[i].properties.ADDRESS+ indy+ '</span>');
+      }
       //~~~~~~~~~~~~~~~~~~~~~~~~~
       //~~~~~~~~GOOD CODE~~~~~~~~
-      //=======DONT DELETE=======
+      //=======end of good=======
       //~~~~~~~~GOOD CODE~~~~~~~~
       //~~~~~~~~~~~~~~~~~~~~~~~~~
       //for(var crime in data){
@@ -126,6 +135,25 @@ $(document).ready(function(){
       console.log(err);
     }
   });
+  function initialize() {
+    var mapInit = {
+      center:new google.maps.LatLng(39.7684,-86.1581),
+      zoom:11,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+  }
+  function addMarker(data, LatLng){
+    console.log(LatLng[0].geometry.location.lat()LatLng[0].geometry.location.lng());
+    var fmLatLng = "'"+ LatLng[0].geometry.location.lat()+','+LatLng[0].geometry.location.lng() + "'";
+    var anLatLng = LatLng[0].geometry.location.lat+LatLng[0].geometry.location.lng;
+    var litLatLng = LatLngLiteral;
+    var marker = new google.maps.Marker({
+      position: litLatLng,
+      map: map,
+      title: 'something',
+      animation: google.maps.Animation.DROP
+    })
+  }
 });
 
 //~~~~~~~~~~~~~~~~~~~
