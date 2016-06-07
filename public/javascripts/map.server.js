@@ -99,7 +99,6 @@ $(document).ready(function(){
     success:function(data){
       console.log(data);
       let indy = " INDIANAPOLIS, IN";
-      indy.toUpperCase();
       var tumble = data.features[1].properties.ADDRESS+' Indianapolis, IN'
       console.log(tumble);
       //~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -122,7 +121,7 @@ $(document).ready(function(){
       }
       //~~~~~~~~~~~~~~~~~~~~~~~~~
       //~~~~~~~~GOOD CODE~~~~~~~~
-      //=======DONT DELETE=======
+      //=======end of good=======
       //~~~~~~~~GOOD CODE~~~~~~~~
       //~~~~~~~~~~~~~~~~~~~~~~~~~
       //for(var crime in data){
