@@ -4,7 +4,7 @@
 // var markers=[];
 
 $(document).ready(function(){
-
+  google.maps.event.addDomListener(window, 'load', initialize());
   // var mapcoords= {
   //   "loc1" : [{
   //     "latitude": 39.80936,
@@ -126,6 +126,13 @@ $(document).ready(function(){
       console.log(err);
     }
   });
+  function initialize() {
+    var mapInit = {
+      center:new google.maps.LatLng(39.7684,-86.1581),
+      zoom:11,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+  }
 });
 
 //~~~~~~~~~~~~~~~~~~~
