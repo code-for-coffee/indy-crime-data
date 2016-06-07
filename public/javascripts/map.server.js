@@ -145,10 +145,15 @@ $(document).ready(function(){
   function addMarker(data, LatLng){
     console.log(LatLng[0].geometry.location.lat()+''+LatLng[0].geometry.location.lng());
     var fmLatLng = "'"+ LatLng[0].geometry.location.lat()+','+LatLng[0].geometry.location.lng() + "'";
-    var anLatLng = LatLng[0].geometry.location.lat+LatLng[0].geometry.location.lng;
-    var litLatLng = LatLngLiteral;
+    var anLatLng = LatLng[0].geometry.location.lat()+''+LatLng[0].geometry.location.lng();
+    var aLat = LatLng[0].geometry.location.lat();
+    var aLng = LatLng[0].geometry.location.lng();
+    var objLatLng = {
+      lat: aLat,
+      lng: aLng
+    }
     var marker = new google.maps.Marker({
-      position: litLatLng,
+      position: objLatLng,
       map: map,
       title: 'something',
       animation: google.maps.Animation.DROP
