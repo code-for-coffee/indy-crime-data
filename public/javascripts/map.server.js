@@ -143,11 +143,12 @@ $(document).ready(function(){
     };
   }
   function addMarker(data, LatLng){
-    console.log("'"+LatLng[0].geometry.location.lat()+','+LatLng[0].geometry.location.lng()+"'");
+    console.log(LatLng[0].geometry.location.lat()LatLng[0].geometry.location.lng());
     var fmLatLng = "'"+ LatLng[0].geometry.location.lat()+','+LatLng[0].geometry.location.lng() + "'";
-
+    var anLatLng = LatLng[0].geometry.location.lat+LatLng[0].geometry.location.lng;
+    var litLatLng = LatLngLiteral;
     var marker = new google.maps.Marker({
-      position: fmLatLng,
+      position: litLatLng,
       map: map,
       title: 'something',
       animation: google.maps.Animation.DROP
