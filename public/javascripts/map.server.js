@@ -5,49 +5,7 @@
 
 $(document).ready(function(){
   google.maps.event.addDomListener(window, 'load', initialize());
-  // var mapcoords= {
-  //   "loc1" : [{
-  //     "latitude": 39.80936,
-  //     "longitude": -86.15047,
-  //     "crime": "AGGRIVATED ASSAULT-GUN"
-  //   }, {
-  //     "latitude": 39.77001,
-  //     "longitude": -86.26499,
-  //     "crime": "AGGRIVATED ASSAULT-GUN"
-  //   }, {
-  //     "latitude": 39.77446,
-  //     "longitude": -86.12026,
-  //     "crime": "AGGRIVATED ASSAULT-GUN"
-  //   }, {
-  //     "latitude": 39.77235,
-  //     "longitude": -86.13031,
-  //     "crime": "AGGRIVATED ASSAULT-GUN"
-  //   }, {
-  //     "latitude": 39.74383,
-  //     "longitude": -86.14706,
-  //     "crime": "AGGRIVATED ASSAULT-GUN"
-  //   }]
-  // }
-  // console.log(mapcoords.loc1.length);
-  // function addMarker (lati, longi){
-  //   var marker = new google.maps.Marker({
-  //     position: {lat: lati, lng: longi},
-  //     map: map,
-  //     title: "AGGRIVATED ASSAULT-GUN",
-  //     icon:'http://megaicons.net/static/img/icons_sizes/15/534/32/map-marker-ball-left-pink-icon.png',
-  //     animation:google.maps.Animation.DROP
-  //   });// end of marker constructor
-  //   console.log(marker.position);
-  // }
-  // function letsLoop(){
-  //   var loarr = ['1one','2two','3three'];
-  //
-  //   for(var i=0; i < loarr.length; i++){
-  //     console.log(loarr[i]);
-  //   }
-  // }
-  // letsLoop();
-  //~~~~~~~~~~~~~~~~~~~
+
   var myLatLng = new google.maps.LatLng( 39.74383, -86.14706);
 
   var examplePoint ={
@@ -99,37 +57,27 @@ $(document).ready(function(){
     success:function(data){
       console.log(data);
       let indy = " INDIANAPOLIS, IN";
-      var tumble = data.features[1].properties.ADDRESS+' Indianapolis, IN'
-      console.log(tumble);
       //~~~~~~~~~~~~~~~~~~~~~~~~~
       //~~~~~~~~GOOD CODE~~~~~~~~
       //=======DONT DELETE=======
       //~~~~~~~~GOOD CODE~~~~~~~~
       //~~~~~~~~~~~~~~~~~~~~~~~~~
-      for (var i = 0; i < 25; i ++){
-        console.log(data.features[i].properties.ADDRESS + indy);
-        console.log('hit em: ' + i);
+      for (var i = 0; i < 11; i ++){
+        // console.log(data.features[i].properties.ADDRESS + indy);
+        // console.log('hit em: ' + i);
         geocoder.geocode({'address': data.features[i].properties.ADDRESS + indy}, function(results, status){
           if(status === google.maps.GeocoderStatus.OK){
-              addMarker(data, results);
+              addMarker(data, results)
           }else{
-            alert('error ):')
+            console.log(status + ':::' + results);
           }
         })
-        //appending data clearly works w/ this code
-        //$('nav').append('<span>'+data.features[i].properties.ADDRESS+ indy+ '</span>');
       }
       //~~~~~~~~~~~~~~~~~~~~~~~~~
       //~~~~~~~~GOOD CODE~~~~~~~~
       //=======end of good=======
       //~~~~~~~~GOOD CODE~~~~~~~~
       //~~~~~~~~~~~~~~~~~~~~~~~~~
-      //for(var crime in data){
-      //  if(data[crime].primary_type==$('option:selected').val()){
-      //    addMarker(data[crime]);
-      // };//end of if statment
-      //}//end of for in loop
-      /////////////////////////change event listener
     },
     error:function(err){
       console.log(err);
@@ -159,59 +107,3 @@ $(document).ready(function(){
     })
   }
 });
-
-//~~~~~~~~~~~~~~~~~~~
-//   function addTheMarkers(){
-//     console.log('hit');
-//     for (var i = 0; i < mapcoords.loc1.length; i++) {
-//       var lati = mapcoords.loc1[i].latitude;
-//       var longi = mapcoords.loc1[i].longitude;
-//       console.log(lati + ' ::::  '+ longi);
-//       addMarker(lati, longi);
-//     };
-//   }
-//   addTheMarkers();
-// });
-
-// var mapcoords= {
-//   "loc1" : [{
-//     "latitude": 39.80936,
-//     "longitude": -86.15047,
-//     "crime": "AGGRIVATED ASSAULT-GUN"
-//   }, {
-//     "latitude": 39.77001,
-//     "longitude": -86.26499,
-//     "crime": "AGGRIVATED ASSAULT-GUN"
-//   }, {
-//     "latitude": 39.77446,
-//     "longitude": -86.12026,
-//     "crime": "AGGRIVATED ASSAULT-GUN"
-//   }, {
-//     "latitude": 39.77235,
-//     "longitude": -86.13031,
-//     "crime": "AGGRIVATED ASSAULT-GUN"
-//   }, {
-//     "latitude": 39.74383,
-//     "longitude": -86.14706,
-//     "crime": "AGGRIVATED ASSAULT-GUN"
-//   }]
-// }
-// function addMarker (lati, longi){
-//   var marker = new google.maps.Marker({
-//     position: {lat: lati, lng: longi},
-//     map: map,
-//     title: "AGGRIVATED ASSAULT-GUN",
-//     icon:'http://megaicons.net/static/img/icons_sizes/15/534/32/map-marker-ball-left-pink-icon.png',
-//     animation:google.maps.Animation.DROP
-//   });// end of marker constructor
-//   markers.push(marker);
-// }
-// function addTheMarkers(){
-//   console.log('hit');
-//   for (var i = 0; i < mapcoords.length; i++) {
-//     console.log(i+ 'hello');
-//     var lati = jsonDP.loc1[i].latitude;
-//     var longi = jsonDP.loc1[i].longitude;
-//     addMarker(lati, longi);
-//   };
-// }
