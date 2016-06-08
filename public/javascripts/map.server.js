@@ -67,7 +67,8 @@ $(document).ready(function(){
         // console.log('hit em: ' + i);
         geocoder.geocode({'address': data.features[i].properties.ADDRESS + indy}, function(results, status){
           if(status === google.maps.GeocoderStatus.OK){
-              addMarker(data, results)
+            console.log(data + "::::" + results);
+              addMarker(data, results);
           }else{
             console.log(status + ':::' + results);
           }
