@@ -28,6 +28,9 @@ body {
     margin: 0 auto; }
   body #home {
     text-align: center; }
+    body #home .spacer {
+      width: 100%;
+      height: 20vh; }
   body #about {
     text-align: center; }
     body #about hr {
