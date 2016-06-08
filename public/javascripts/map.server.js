@@ -77,6 +77,7 @@ $(document).ready(function(){
       //~~~~~~~~~~~~~~~~~~~~~~~~~
       //~~~~~~~~GOOD CODE~~~~~~~~
       //=======end of good=======
+
       //~~~~~~~~GOOD CODE~~~~~~~~
       //~~~~~~~~~~~~~~~~~~~~~~~~~
     },
@@ -84,6 +85,20 @@ $(document).ready(function(){
       console.log(err);
     }
   });
+
+
+  //More crimes need to be added
+  function crimeType(crimeString) {
+      if crimeString.contains("ROBBERY") {
+        return "FE7569";
+      } else if crimeString.contains("RAPE") {
+        return "EED540";
+      } else {
+        return "FFFFFF";
+      }
+
+  }
+
   function initialize() {
     var mapInit = {
       center:new google.maps.LatLng(39.7684,-86.1581),
@@ -99,9 +114,13 @@ $(document).ready(function(){
       lat: aLat,
       lng: aLng
     }
+    //Needs to send actual crime from JSON
+    var crimeString = "HELLO" //JSon call goes here
+    var markerColor = crimeType(crimeString);
     var marker = new google.maps.Marker({
       position: objLatLng,
       map: map,
+      title: crimeString,
       animation: google.maps.Animation.DROP
     });
     marker.addListener('click', function(){
