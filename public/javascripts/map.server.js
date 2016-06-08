@@ -122,6 +122,7 @@ $(document).ready(function(){
       //~~~~~~~~~~~~~~~~~~~~~~~~~
       //~~~~~~~~GOOD CODE~~~~~~~~
       //=======end of good=======
+
       //~~~~~~~~GOOD CODE~~~~~~~~
       //~~~~~~~~~~~~~~~~~~~~~~~~~
       //for(var crime in data){
@@ -138,10 +139,10 @@ $(document).ready(function(){
 
 
   //More crimes need to be added
-  function crimeType(crime) {
-      if crime.contains("ROBBERY") {
+  function crimeType(crimeString) {
+      if crimeString.contains("ROBBERY") {
         return "FE7569";
-      } else if crime.contains("RAPE") {
+      } else if crimeString.contains("RAPE") {
         return "EED540";
       } else {
         return "FFFFFF";
@@ -167,7 +168,8 @@ $(document).ready(function(){
       lng: aLng
     }
     //Needs to send actual crime from JSON
-    var markerColor = crimeType("HELLO");
+    var crimeString = "HELLO" //JSon call goes here
+    var markerColor = crimeType(crimeString);
     var marker = new google.maps.Marker({
       position: objLatLng,
       map: map,
