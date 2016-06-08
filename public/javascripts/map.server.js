@@ -155,7 +155,6 @@ $(document).ready(function(){
     var marker = new google.maps.Marker({
       position: objLatLng,
       map: map,
-      title: 'something',
       animation: google.maps.Animation.DROP
     })
   }
