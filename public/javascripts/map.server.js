@@ -166,6 +166,7 @@ $(document).ready(function(){
       lat: aLat,
       lng: aLng
     }
+    //Needs to send actual crime from JSON
     var markerColor = crimeType("HELLO");
     var marker = new google.maps.Marker({
       position: objLatLng,
