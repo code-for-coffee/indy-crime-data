@@ -67,7 +67,8 @@ $(document).ready(function(){
         // console.log('hit em: ' + i);
         geocoder.geocode({'address': data.features[i].properties.ADDRESS + indy}, function(results, status){
           if(status === google.maps.GeocoderStatus.OK){
-              addMarker(data, results)
+            console.log(data + "::::" + results);
+              addMarker(data, results);
           }else{
             console.log(status + ':::' + results);
           }
@@ -91,9 +92,7 @@ $(document).ready(function(){
     };
   }
   function addMarker(data, LatLng){
-    console.log(LatLng[0].geometry.location.lat()+''+LatLng[0].geometry.location.lng());
-    var fmLatLng = "'"+ LatLng[0].geometry.location.lat()+','+LatLng[0].geometry.location.lng() + "'";
-    var anLatLng = LatLng[0].geometry.location.lat()+''+LatLng[0].geometry.location.lng();
+    //console.log(LatLng[0].geometry.location.lat()+''+LatLng[0].geometry.location.lng());
     var aLat = LatLng[0].geometry.location.lat();
     var aLng = LatLng[0].geometry.location.lng();
     var objLatLng = {
@@ -104,6 +103,9 @@ $(document).ready(function(){
       position: objLatLng,
       map: map,
       animation: google.maps.Animation.DROP
+    });
+    marker.addListener('click', function(){
+      infowindow.open(map, marker);
     })
   }
 });
