@@ -173,6 +173,7 @@ $(document).ready(function(){
     var marker = new google.maps.Marker({
       position: objLatLng,
       map: map,
+      title: crimeString,
       animation: google.maps.Animation.DROP
     })
   }
