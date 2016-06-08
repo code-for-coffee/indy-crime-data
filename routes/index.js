@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 var indexInfo = {
-  title: 'Indy Crime Data',
-  desc: 'One stop shop to view commited crime locations in Indianapolis.'
+  title: 'Local Record',
+  locations: ['Future Location', 'Indianapolis, Indiana', 'Chicago, Illinois'],
+  desc: 'Where you can understand the crime rate of your city and help create a safer environment.'
 
 }
 
