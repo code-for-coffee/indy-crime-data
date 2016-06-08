@@ -135,6 +135,20 @@ $(document).ready(function(){
       console.log(err);
     }
   });
+
+
+  //More crimes need to be added
+  function crimeType(crime) {
+      if crime.contains("ROBBERY") {
+        return "FE7569";
+      } else if crime.contains("RAPE") {
+        return "EED540";
+      } else {
+        return "FFFFFF";
+      }
+
+  }
+
   function initialize() {
     var mapInit = {
       center:new google.maps.LatLng(39.7684,-86.1581),
@@ -152,6 +166,7 @@ $(document).ready(function(){
       lat: aLat,
       lng: aLng
     }
+    var markerColor = crimeType("HELLO");
     var marker = new google.maps.Marker({
       position: objLatLng,
       map: map,
