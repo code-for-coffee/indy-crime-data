@@ -17,12 +17,13 @@ $(document).ready(function(){
     desc: 'some more data here'
   }
   var avar = "I'M PART OF THE FIRST HEADING";
+  var map = new google.maps.Map(document.getElementById('googleMap'), examplePoint, console.log('hit in map var'));
   var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
       '<h1 id="firstHeading" class="firstHeading">'+avar+'</h1>'+
       '<div id="bodyContent">'+
-      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+      '<p><b>BINGBONG</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
       'sandstone rock formation in the southern part of the '+
       'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
       'south west of the nearest large town, Alice Springs; 450&#160;km '+
@@ -37,7 +38,6 @@ $(document).ready(function(){
       '(last visited June 22, 2009).</p>'+
       '</div>'+
       '</div>';
-  var map = new google.maps.Map(document.getElementById('googleMap'), examplePoint, console.log('hit in map var'));
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
