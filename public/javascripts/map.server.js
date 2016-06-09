@@ -90,16 +90,16 @@ $(document).ready(function(){
 
   //More crimes need to be added
   function crimeType(crimeString) {
-      if (crimeString.contains("ROBBERY")) {
-        return "red-dot.png";
-      } else if (crimeString.contains("RAPE")) {
-        return "purple-dot.png";
-      } else if (crimeString.contains("ASSAULT")) {
-        return "blue-dot.png";
-      } else if (crimeString.contains("LARCENY")) {
-        return "green-dot.png"
+      if (crimeString.includes("ROBBERY")) {
+        return markerColor = "red-dot.png";
+      } else if (crimeString.includes("RAPE")) {
+        return markerColor = "purple-dot.png";
+      } else if (crimeString.includes("ASSAULT")) {
+        return markerColor = "blue-dot.png";
+      } else if (crimeString.includes("LARCENY")) {
+        return markerColor = "green-dot.png"
       } else {
-        return "orange-dot.png";
+        return markerColor = "orange-dot.png";
       }
 
   }
