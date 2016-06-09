@@ -65,10 +65,12 @@ $(document).ready(function(){
       for (var i = 0; i < 11; i ++){
         // console.log(data.features[i].properties.ADDRESS + indy);
         // console.log('hit em: ' + i);
+        var crimeString = data.features[i].properties.CRIME;
+        var markerColor = crimeType(crimeString);
         geocoder.geocode({'address': data.features[i].properties.ADDRESS + indy}, function(results, status){
           if(status === google.maps.GeocoderStatus.OK){
             console.log(data + "::::" + results);
-              addMarker(data, results);
+              addMarker(data, results, markerColor, crimeString);
           }else{
             console.log(status + ':::' + results);
           }
@@ -87,16 +89,20 @@ $(document).ready(function(){
 
 
   //More crimes need to be added
-  // function crimeType(crimeString) {
-  //     if (crimeString.contains("ROBBERY")) {
-  //       return "FE7569";
-  //     } else if (crimeString.contains("RAPE")) {
-  //       return "EED540";
-  //     } else {
-  //       return "FFFFFF";
-  //     }
-  //
-  // }
+  function crimeType(crimeString) {
+      if (crimeString.contains("ROBBERY")) {
+        return "red-dot.png";
+      } else if (crimeString.contains("RAPE")) {
+        return "purple-dot.png";
+      } else if (crimeString.contains("ASSAULT")) {
+        return "blue-dot.png";
+      } else if (crimeString.contains("LARCENY")) {
+        return "green-dot.png"
+      } else {
+        return "orange-dot.png";
+      }
+
+  }
 
   function initialize() {
     var mapInit = {
@@ -105,7 +111,7 @@ $(document).ready(function(){
       mapTypeId:google.maps.MapTypeId.ROADMAP
     };
   }
-  function addMarker(data, LatLng){
+  function addMarker(data, LatLng, markerColorl, crimeString){
     //console.log(LatLng[0].geometry.location.lat()+''+LatLng[0].geometry.location.lng());
     var aLat = LatLng[0].geometry.location.lat();
     var aLng = LatLng[0].geometry.location.lng();
@@ -113,12 +119,10 @@ $(document).ready(function(){
       lat: aLat,
       lng: aLng
     }
-    //Needs to send actual crime from JSON
-    var crimeString = "HELLO" //JSon call goes here
-    //var markerColor = crimeType(crimeString);
-    var marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({
       position: objLatLng,
       map: map,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/' + markerColor,
       title: crimeString,
       animation: google.maps.Animation.DROP
     });
