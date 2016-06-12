@@ -3,6 +3,44 @@
   height: 100%
   position: fixed
 
+  .mapMenu
+    width: 10%
+    height: 25%
+    position: fixed
+    background-color: rgba(#ee0112, .25)
+    border: 1px black solid
+    z-index: 9999
+
+  #heat-point-menu
+    top: 10%
+    right: 5%
+
   #googleMap
     width: 100%
     height: 95%
+
+    #pointWindow
+      border: 0 !important
+
+      .crimeList
+        padding: 0
+        margin: 0
+        list-style: none
+        text-align: center
+
+        h4
+          color: $red
+
+        .leftPanel
+          float: left
+          width: 45%
+          padding: 5%
+
+
+        .rightPanel
+          float: right
+          width: 45%
+          padding: 5%
+
+        .cardDataStyle
+          display: block

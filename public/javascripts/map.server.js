@@ -28,8 +28,18 @@ $(document).ready(function(){
       console.log(data);
       // var NewMapData = new MapData(this.props.OBJECTID);
       // console.log(NewMapData.id);
-      for (var i = 150; i < 161; i ++){
-        (function(x){
+      for (var i = 8780; i < 8791; i ++){
+        (function(){
+          var cardData = {
+            id: data.features[i].properties.OBJECTID,
+            addr: data.features[i].properties.ADDRESS,
+            beat: data.features[i].properties.BEAT,
+            c4se: data.features[i].properties.CASE,
+            crime: data.features[i].properties.CRIME,
+            date: data.features[i].properties.DATE_,
+            time: Date(data.features[i].properties.TIME)
+
+          }
           var props = data.features[i].properties;
           var beats = data.features[i].properties.ADDRESS;
           var crimeString = data.features[i].properties.CRIME;
@@ -39,7 +49,7 @@ $(document).ready(function(){
           // // console.log(putArr);
           geocoder.geocode({'address': props.ADDRESS + indy}, function(results, status){
             if(status === google.maps.GeocoderStatus.OK){
-              addMarker(putArr, results, markerColor, crimeString, beats);
+              addMarker(putArr, results, markerColor, crimeString, cardData);
             }else{
               console.log(status + ':::' + results);
             }
@@ -51,20 +61,25 @@ $(document).ready(function(){
       console.log(err);
     }
   });
-
-  function MapData(id, address, crime, caseNum, beat, time, ucr, date){
-    this.id = id;
-    this.address = address;
-    this.crime = crime;
-    this.caseNum = caseNum;
-    this.beat = beat;
-    this.time = function(){
-      return time.getHours();
-    };
-    this.ucr = ucr;
-    this.date = date;
-
-  }
+  //~~~~~~~~~~~~~~~~~~
+  //~~~~~~~~~~~~~~~~~~
+  //~~~~~~~~~~~~~~~~~~
+  //this is the constructor for future map data logging
+  // function MapData(id, address, crime, caseNum, beat, time, ucr, date){
+  //   this.id = id;
+  //   this.address = address;
+  //   this.crime = crime;
+  //   this.caseNum = caseNum;
+  //   this.beat = beat;
+  //   this.time = function(){
+  //     return time.getHours();
+  //   };
+  //   this.ucr = ucr;
+  //   this.date = date;
+  //
+  // }
+  // var newMapData = new MapData('bing','111 hello st', 'assult')
+  // console.log(newMapData);
   // var localeMapData = new MapData()
   //More crimes need to be added
   function crimeType(crimeString) {
@@ -104,38 +119,48 @@ $(document).ready(function(){
   //        infoWindow.open(map, this);
   //    });
   //  }
-  function addMarker(data, LatLng, markerColor, crimeString, beat){
+  function addMarker(data, LatLng, markerColor, crimeString, cardData){
     //console.log(LatLng[0].geometry.location.lat()+''+LatLng[0].geometry.location.lng());
     var aLat = LatLng[0].geometry.location.lat();
     var aLng = LatLng[0].geometry.location.lng();
-    var stuff = data.ADDRESS;
     var objLatLng = {
       lat: aLat,
       lng: aLng
     }
-    this.beat = beat;
+    this.cardData = cardData;
+    var indy = ' Indianapolis, IN';
+    cardData.addr = cardData.addr+indy;
     // for(i=; i < data.length; i++){
     //   var crimeInfo = data[i];
     // }
     //for(i=0; i < data.length; i++){
-    var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">'+objLatLng.lat+' '+objLatLng.lng+'</h1>'+
-        '<div id="bodyContent">'+
-        '<p><b>'+beat+'+</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-        'sandstone rock formation in the southern part of the '+
-        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-        'south west of the nearest large town, Alice Springs; 450&#160;km '+
-        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-        'Aboriginal people of the area. It has many springs, waterholes, '+
-        'rock caves and ancient paintings. Uluru is listed as a World '+
-        'Heritage Site.</p>'+
-        '<p>'+
-        ': the address.</p>'+
-        '</div>'+
+    var contentString =
+    '<div id="pointWindow">'+
+          '<div id="">'+
+              '<ul class="crimeList">'+
+                '<li class="crimeTitle">'+
+                  '<h4>Crime</h4>'+
+                  '<span class="cardDataStyle">'+cardData.crime+'</span>'+
+                '</li>'+
+                '<li class="leftPanel">'+
+                  '<h2>Where</h2>'+
+                  '<hr class="infoHr">'+
+                  '<h4>Police Beat</h4>'+
+                  '<span class="cardDataStyle">'+cardData.beat+'</span>'+
+                  '<h4>Address</h4>'+
+                  '<span class="cardDataStyle">'+cardData.addr+'</span>'+
+                  '<h4>Police Beat</h4>'+
+                  '<span class="cardDataStyle">'+cardData.beat+'</span>'+
+                  '<small class="smallCDS">'+objLatLng.lat+'</small>'+
+                '</li>'+
+                '<li class="rightPanel">'+
+                  '<h2>When</h2>'+
+                  '<hr class="infoHr">'+
+                  '<h4>Date | Time</h4>'+
+                  '<span class="cardDataStyle">'+cardData.time+'</span>'+
+                '</li>'+
+              '</ul>'+
+            '</div>'+
         '</div>';
     var marker = new google.maps.Marker({
       position: objLatLng,

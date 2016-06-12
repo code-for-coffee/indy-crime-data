@@ -46,9 +46,38 @@ body {
     width: 100%;
     height: 100%;
     position: fixed; }
+    body #map .mapMenu {
+      width: 10%;
+      height: 25%;
+      position: fixed;
+      background-color: rgba(238, 1, 18, 0.25);
+      border: 1px black solid;
+      z-index: 9999; }
+    body #map #heat-point-menu {
+      top: 10%;
+      right: 5%; }
     body #map #googleMap {
       width: 100%;
       height: 95%; }
+      body #map #googleMap #pointWindow {
+        border: 0 !important; }
+        body #map #googleMap #pointWindow .crimeList {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          text-align: center; }
+          body #map #googleMap #pointWindow .crimeList h4 {
+            color: #BF0A30; }
+          body #map #googleMap #pointWindow .crimeList .leftPanel {
+            float: left;
+            width: 45%;
+            padding: 5%; }
+          body #map #googleMap #pointWindow .crimeList .rightPanel {
+            float: right;
+            width: 45%;
+            padding: 5%; }
+          body #map #googleMap #pointWindow .crimeList .cardDataStyle {
+            display: block; }
   body nav {
     background: #EDEDED;
     width: 100%;
