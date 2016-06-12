@@ -28,6 +28,7 @@ $(document).ready(function(){
       console.log(data);
       // var NewMapData = new MapData(this.props.OBJECTID);
       // console.log(NewMapData.id);
+<<<<<<< HEAD
       for (var i = 8780; i < 8791; i ++){
         (function(){
           var cardData = {
@@ -40,6 +41,10 @@ $(document).ready(function(){
             time: Date(data.features[i].properties.TIME)
 
           }
+=======
+      for (var i = 150; i < 161; i ++){
+        (function(x){
+>>>>>>> e1a4ed53c69792091f31110f3f60a528aa966d95
           var props = data.features[i].properties;
           var beats = data.features[i].properties.ADDRESS;
           var crimeString = data.features[i].properties.CRIME;
@@ -49,7 +54,11 @@ $(document).ready(function(){
           // // console.log(putArr);
           geocoder.geocode({'address': props.ADDRESS + indy}, function(results, status){
             if(status === google.maps.GeocoderStatus.OK){
+<<<<<<< HEAD
               addMarker(putArr, results, markerColor, crimeString, cardData);
+=======
+              addMarker(putArr, results, markerColor, crimeString, beats);
+>>>>>>> e1a4ed53c69792091f31110f3f60a528aa966d95
             }else{
               console.log(status + ':::' + results);
             }
@@ -61,6 +70,7 @@ $(document).ready(function(){
       console.log(err);
     }
   });
+<<<<<<< HEAD
   //~~~~~~~~~~~~~~~~~~
   //~~~~~~~~~~~~~~~~~~
   //~~~~~~~~~~~~~~~~~~
@@ -80,6 +90,22 @@ $(document).ready(function(){
   // }
   // var newMapData = new MapData('bing','111 hello st', 'assult')
   // console.log(newMapData);
+=======
+
+  function MapData(id, address, crime, caseNum, beat, time, ucr, date){
+    this.id = id;
+    this.address = address;
+    this.crime = crime;
+    this.caseNum = caseNum;
+    this.beat = beat;
+    this.time = function(){
+      return time.getHours();
+    };
+    this.ucr = ucr;
+    this.date = date;
+
+  }
+>>>>>>> e1a4ed53c69792091f31110f3f60a528aa966d95
   // var localeMapData = new MapData()
   //More crimes need to be added
   function crimeType(crimeString) {
@@ -91,8 +117,19 @@ $(document).ready(function(){
         return markerColor = "blue-dot.png";
       } else if (crimeString.includes("LARCENY")) {
         return markerColor = "green-dot.png"
+<<<<<<< HEAD
       } else {
         return markerColor = "orange-dot.png";
+=======
+      } else if (crimeString.includes("STOLEN VEHICLE")) {
+        return markerColor = "orange-dot.png";
+      } else if (crimeString.includes("HOMICIDE")){
+        return markerColor = "yellow-dot.png";
+      } else if (crimeString.includes("BURG")) {
+        return markerColor = "ltblue-dot.png";
+      } else {
+        return markerColor = "pink-dot.png";
+>>>>>>> e1a4ed53c69792091f31110f3f60a528aa966d95
       }
 
   }
@@ -119,21 +156,31 @@ $(document).ready(function(){
   //        infoWindow.open(map, this);
   //    });
   //  }
+<<<<<<< HEAD
   function addMarker(data, LatLng, markerColor, crimeString, cardData){
+=======
+  function addMarker(data, LatLng, markerColor, crimeString, beat){
+>>>>>>> e1a4ed53c69792091f31110f3f60a528aa966d95
     //console.log(LatLng[0].geometry.location.lat()+''+LatLng[0].geometry.location.lng());
     var aLat = LatLng[0].geometry.location.lat();
     var aLng = LatLng[0].geometry.location.lng();
+    var stuff = data.ADDRESS;
     var objLatLng = {
       lat: aLat,
       lng: aLng
     }
+<<<<<<< HEAD
     this.cardData = cardData;
     var indy = ' Indianapolis, IN';
     cardData.addr = cardData.addr+indy;
+=======
+    this.beat = beat;
+>>>>>>> e1a4ed53c69792091f31110f3f60a528aa966d95
     // for(i=; i < data.length; i++){
     //   var crimeInfo = data[i];
     // }
     //for(i=0; i < data.length; i++){
+<<<<<<< HEAD
     var contentString =
     '<div id="pointWindow">'+
           '<div id="">'+
@@ -161,6 +208,26 @@ $(document).ready(function(){
                 '</li>'+
               '</ul>'+
             '</div>'+
+=======
+    var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">'+objLatLng.lat+' '+objLatLng.lng+'</h1>'+
+        '<div id="bodyContent">'+
+        '<p><b>'+beat+'+</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+        'sandstone rock formation in the southern part of the '+
+        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+        'south west of the nearest large town, Alice Springs; 450&#160;km '+
+        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+        'Aboriginal people of the area. It has many springs, waterholes, '+
+        'rock caves and ancient paintings. Uluru is listed as a World '+
+        'Heritage Site.</p>'+
+        '<p>'+
+        ': the address.</p>'+
+        '</div>'+
+>>>>>>> e1a4ed53c69792091f31110f3f60a528aa966d95
         '</div>';
     var marker = new google.maps.Marker({
       position: objLatLng,
