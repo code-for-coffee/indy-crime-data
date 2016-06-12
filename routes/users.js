@@ -9,12 +9,14 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 router.get('/', function(req, res){
+  console.log('got user');
   res.render('user', {
     user:req.user
   })
 });
 
 router.get('/login', function(req, res){
+  console.log('logged in');
   res.render('login', {
     user:req.user
   })
@@ -22,15 +24,21 @@ router.get('/login', function(req, res){
 //on failrue redirect home
 router.post('/login', passport.authenticate('local', {failureRedirect: '/'}),
   function(req, res){
-    res.redirect('/');
+    res.redirect('/user');
   }
 );
 
-router.get('/register', function(req, res){
-  res.render('register', {
-    user:req.user
-  })
-});
+// router.get('/register', function(req, res){
+//   User.register(new User({
+//     username: req.body.username,
+//     email: req.body.email
+//   }),
+//   req.body.password,
+//   )
+//   res.render('/', {
+//     user:req.user
+//   })
+// });
 
 router.get('/logout', function(req,res){
   req.logout();
@@ -42,11 +50,14 @@ router.post('/register', function(req, res){
     username: req.body.username
   }),
   req.body.password,
-  function(err, account){
+  function(err, user){
+    console.log('in error or create function');
     if(err){
-      return res.render('register', { user: user});
+      console.log('we hit error and didn\'t authenticate');
+      return res.render('/', err);
     }
     passport.authenticate('local')(req, res, function(){
+      console.log('passport authenticated redirecting');
       res.redirect('/');
     });
   });
