@@ -9,12 +9,14 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 router.get('/', function(req, res){
+  console.log('got user');
   res.render('user', {
     user:req.user
   })
 });
 
 router.get('/login', function(req, res){
+  console.log('logged in');
   res.render('login', {
     user:req.user
   })
@@ -22,7 +24,7 @@ router.get('/login', function(req, res){
 //on failrue redirect home
 router.post('/login', passport.authenticate('local', {failureRedirect: '/'}),
   function(req, res){
-    res.redirect('/');
+    res.redirect('/user');
   }
 );
 
