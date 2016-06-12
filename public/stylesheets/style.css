@@ -59,25 +59,23 @@ body {
     body #map #googleMap {
       width: 100%;
       height: 95%; }
-      body #map #googleMap #pointWindow {
-        border: 0 !important; }
-        body #map #googleMap #pointWindow .crimeList {
-          padding: 0;
-          margin: 0;
-          list-style: none;
-          text-align: center; }
-          body #map #googleMap #pointWindow .crimeList h4 {
-            color: #BF0A30; }
-          body #map #googleMap #pointWindow .crimeList .leftPanel {
-            float: left;
-            width: 45%;
-            padding: 5%; }
-          body #map #googleMap #pointWindow .crimeList .rightPanel {
-            float: right;
-            width: 45%;
-            padding: 5%; }
-          body #map #googleMap #pointWindow .crimeList .cardDataStyle {
-            display: block; }
+      body #map #googleMap #pointWindow .crimeList {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        text-align: center; }
+        body #map #googleMap #pointWindow .crimeList h4 {
+          color: #BF0A30; }
+        body #map #googleMap #pointWindow .crimeList .leftPanel {
+          float: left;
+          width: 45%;
+          padding: 5%; }
+        body #map #googleMap #pointWindow .crimeList .rightPanel {
+          float: right;
+          width: 45%;
+          padding: 5%; }
+        body #map #googleMap #pointWindow .crimeList .cardDataStyle {
+          display: block; }
   body nav {
     background: #EDEDED;
     width: 100%;
@@ -88,11 +86,23 @@ body {
     border-top: 1.5px solid #002868;
     padding-left: 10%; }
     body nav .navItems {
-      display: inline-block;
-      font-size: .75em;
-      margin-left: 25px;
-      text-decoration: none;
-      color: #002868; }
+      list-style: none;
+      float: left;
+      float: left; }
+      body nav .navItems .navLinks {
+        display: inline-block;
+        font-size: .75em;
+        margin-left: 25px;
+        text-decoration: none;
+        color: #002868; }
+    body nav #lgn-list {
+      margin: 0;
+      padding: 0;
+      float: right;
+      list-style: none;
+      padding-right: 10%; }
+      body nav #lgn-list .lgnBtns {
+        display: inline-block; }
 
 a {
   color: #00B7FF; }
