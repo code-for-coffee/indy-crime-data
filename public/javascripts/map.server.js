@@ -78,8 +78,12 @@ $(document).ready(function(){
         return markerColor = "green-dot.png"
       } else if (crimeString.includes("STOLEN VEHICLE")) {
         return markerColor = "orange-dot.png";
+      } else if (crimeString.includes("HOMICIDE")){
+        return markerColor = "yellow-dot.png";
+      } else if (crimeString.includes("BURG")) {
+        return markerColor = "ltblue-dot.png";
       } else {
-        return markerColor = "yellow-dot.png"
+        return markerColor = "pink-dot.png";
       }
 
   }
